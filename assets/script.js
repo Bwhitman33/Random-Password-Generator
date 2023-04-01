@@ -20,9 +20,34 @@ function confirmLower() {
   var confirmLower= confirm("Would you like to use Lower Case letters in your password?");
 
 }
+
+function confirmUpper() {
+  var confirmUpper= confirm("Would you like to use Upper Case letters in your password");
+
+}
+
+function confirmNumber() {
+  var confirmNumber= confirm("Would you like to use Numbers in your password?");
+
+}
+
+function confirmSpecial() {
+  var confirmSpecial= confirm("Would you like to use Special Characters in your password?");
+
+}
+
 // Write Function defining generatePassword()
 function generatePassword() {
-  var 
+  var conLow= confirmLower();
+  var conUpper = confirmUpper();
+  var conNum = confirmNumber();
+  var conSpec = confirmSpecial();
+  var lengthOfPass = getPasswordLength();
+}
+
+// Need to write function to get password length between 8 and 128 characters
+var getPasswordLength = function {
+  
 }
 
 // Write password to the #password input
