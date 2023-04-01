@@ -75,20 +75,28 @@ function generatePassword() {
   var conUpper = confirmUpper();
   var conNum = confirmNumber();
   var conSpec = confirmSpecial();
-  // var lengthOfPass = getPasswordLength();
+  var lengthOfPass = getPasswordLength();
 
   // need to set parameters in this function to get a password generated given all of the above criteria is met
-  if (conLow === true && conUpper === true && conNum === true && conSpec === true) {
+  if (conLow === true && conUpper === true && conNum === true && conSpec === true && lengthOfPass === true) {
    
     return password;
   }
     
 }
 
-// Need to write function to get password length between 8 and 128 characters
-// var getPasswordLength = function {
+// Need to write function to let the user set a password length between 8 and 128 characters
+var getPasswordLength = function() {
+    var passwordLength = prompt("Choose a password length between 8 and 128 characters");
 
-// }
+    if (passwordLength > 7 && length < 129)
+    {
+      return true;
+    }
+    else {
+      alert("Password must be between 8 and 128 characters in length. Please try again.")
+    }
+}
 
 // Write password to the #password input
 function writePassword() {
