@@ -3,100 +3,43 @@ var generateBtn = document.querySelector("#generate");
 
 
 // define each variable first?
-var lowCase = "abcdefghijklmnopqrstuvwxyz";
-var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var numOnly = "0123456789";
-var specChar = "!@#$%^&*()";
+var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var numOnly = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var specChar = ['"', "!", "@", "#", "$", "%", "^", "&", "*", "(", ")"];
 
-// Need to generate functions to provide random lowercase, uppercase, numbers and special characters
-function getRandomLower() {
-  var lowCase = "abcdefghijklmnopqrstuvwxyz";
-  return lowCase[Math.floor(Math.random() * lowCase.length)];
-}
-
-function getRandomUpper() {
-  var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-  return upperCase[Math.floor(Math.random() * upperCase.length)];
-}
-
-function getRandomNumber() {
-  var numOnly = "0123456789";
-  return numOnly[Math.floor(Math.random() * numOnly.length)];
-}
-
-function getRandomSpec() {
-  var specChar = "!@#$%^&*()";
-  return specChar[Math.floor(Math.random() * specChar.length)];
-}
-
-// Need to write code to ask the user if they would like to utilize Lower Case, Capital, Numbers or Special Characters
-function confirmLower() {
-  var confirmLow= confirm("Would you like to use Lower Case letters in your password?");
-  if (confirmLow == true) {
-      return true; 
+function userChoices() {
+    var passwordLength = prompt("Choose a password length between 8 and 128 characters");
+  
+    if (passwordLength < 7 || passwordLength > 129) {    
+      alert("Password must be between 8 and 128 characters in length. Please try again.");
+      return null
+    }
+    var confirmLow = confirm("Would you like to use Lower Case letters in your password?");
+    var confirmUp = confirm("Would you like to use Upper Case letters in your password");
+    var confirmNum = confirm("Would you like to use Numbers in your password?");
+    var confirmSpec = confirm("Would you like to use Special Characters in your password?");
+    if (confirmLow == false && confirmUp == false && confirmNum == false && confirmSpec == false) {
+      alert("At least one character type must be used")
+      return null;
+    }
+    var user = {
+      length: passwordLength,
+      lowerCase: confirmLow,
+      upperCase: confirmUp,
+      numOnly: confirmNum,
+      specChar: confirmSpec,
   }
-  else if (confirmLow == false) {
-    return false;
-  }
-}
-
-function confirmUpper() {
-  var confirmUp= confirm("Would you like to use Upper Case letters in your password");
-  if (confirmUp == true) {
-    return true;
-  }
-  else if (confirmUp == false) {
-    return false;
-  }
-}
-
-function confirmNumber() {
-  var confirmNum= confirm("Would you like to use Numbers in your password?");
-  if (confirmNum == true) {
-    return true;
-  }
-  else if (confirmNum == false)
-    return false;
-}
-
-function confirmSpecial() {
-  var confirmSpec= confirm("Would you like to use Special Characters in your password?");
-  if (confirmSpec == true) {
-    return true;
-  }
-  else if (confirmSpec == false) {
-    return false;
-  }
+  return user;
 }
 
 // Write Function defining generatePassword()
 function generatePassword() {
-  var conLow= confirmLower();
-  var conUpper = confirmUpper();
-  var conNum = confirmNumber();
-  var conSpec = confirmSpecial();
-  var lengthOfPass = getPasswordLength();
-
-  // need to set parameters in this function to get a password generated given all of the above criteria is met
-  if (conLow === true && conUpper === true && conNum === true && conSpec === true && lengthOfPass === true) {
-   
-    return password;
-  }
-    
+  var choices = userChoices();
+  console.log(choices);
 }
 
-// Need to write function to let the user set a password length between 8 and 128 characters
-var getPasswordLength = function() {
-    var passwordLength = prompt("Choose a password length between 8 and 128 characters");
 
-    if (passwordLength > 7 && length < 129)
-    {
-      return true;
-    }
-    else {
-      alert("Password must be between 8 and 128 characters in length. Please try again.")
-    }
-}
 
 // Write password to the #password input
 function writePassword() {
