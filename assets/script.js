@@ -36,7 +36,25 @@ function userChoices() {
 // Write Function defining generatePassword()
 function generatePassword() {
   var choices = userChoices();
-  console.log(choices);
+  var possiblePass = [];
+  var result = [];
+  if (choices.lowerCase) {
+    possiblePass = possiblePass.concat(lowerCase);
+  }
+  if (choices.upperCase) {
+    possiblePass = possiblePass.concat(upperCase);
+  }
+  if (choices.numOnly) {
+    possiblePass = possiblePass.concat(numOnly);
+  }
+  if (choices.specChar) {
+    possiblePass = possiblePass.concat(specChar);
+  }
+  for (var i = 0; i < choices.length; i++) {
+    var possible = possiblePass[Math.floor(Math.random()*possiblePass.length)];
+    result.push(possible);
+  }
+    return result.join('');  
 }
 
 
